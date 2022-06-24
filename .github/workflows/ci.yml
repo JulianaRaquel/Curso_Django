@@ -17,14 +17,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    -name: Copiar Configurações .env
-     run:|
-       cp contrib/env-sample .env
-    
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
         python-version: "3.9.13"
+        
+    - name: Copiar Configurações .env
+      run: |
+        cp contrib/env-sample .env
         
     - name: Instalar dependências
       run: |
