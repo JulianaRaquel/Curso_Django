@@ -1,2 +1,2 @@
 # Variáveis de ambiente
-DEBUG=
+DEBUG=True
