@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'collectfast',
     'django.contrib.staticfiles',
     'pypro32.base',
+    'pypro32.aperitivos',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pypro32.wsgi.application'
+
+INTERNAL_IPS=config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+
+# Configuração do Django-debug-toolbar
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware",)
 
 # Database
 default_db_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
