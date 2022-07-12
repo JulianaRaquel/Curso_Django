@@ -6,3 +6,4 @@ AWS_SECRET_ACCESS_KEY=5VvBbs1es/EVzCp9i+JZ20ZpHXKfwk60YHNbXp0N
 AWS_STORAGE_BUCKET_NAME=bucket-devpro
 SENTRY_DSN=
 INTERNAL_IPS=127.0.0.1
+DATABASE_URL=postgres://postgres:postgres@localhost/testdb

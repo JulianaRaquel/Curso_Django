@@ -19,4 +19,4 @@ def indice(request):
 
 def video(request, slug):
     video = videos_dct[slug]
-    return render(request, 'video.html', context={'video': video})
+    return render(request, 'video.html', context={'videos': video})
