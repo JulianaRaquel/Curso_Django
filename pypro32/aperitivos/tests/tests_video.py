@@ -1,22 +1,28 @@
 from django.urls import reverse
 import pytest
-
+from model_mommy import mommy
+from pypro32.aperitivos.models import Video
 from pypro32.django_assertions import assert_contains
 
 
 @pytest.fixture
-def resp(client):
-    return client.get(reverse('aperitivos:video', args=('motivacao',)))
+def video(db):
+    return mommy.make(Video)
+
+
+@pytest.fixture
+def resp(client, video):
+    return client.get(reverse('aperitivos:video', args=(video.slug,)))
 
 
 def test_status_code(resp):
     assert resp.status_code == 200
 
 
-def test_title_video(resp):
-    assert_contains(resp, '<h1 class="mt-4 mb-3">Vídeo Aperitivo: Motivação</h1>')
+def test_title_video(resp, video):
+    assert_contains(resp, video.titulo)
 
 
-def test_conteudo_video(resp):
-    assert_contains(resp, '<iframe src="https://player.vimeo.com/video/726398954" ')
+def test_conteudo_video(resp, video):
+    assert_contains(resp, f'<iframe src="https://player.vimeo.com/video/{video.vimeo_id}"')
 
